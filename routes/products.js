@@ -3,8 +3,9 @@ const router = express.Router();
 const dataBase = require('../db/products')
 
 router.get(`/`, (req, res) => {
-  
-  res.send(dataBase.getAll());
+  let all = dataBase.getAll()
+  let allProducts = {all: all}
+  res.render('./templates/index',allProducts);
 });
 
 router.post(`/`, (req, res) => {
