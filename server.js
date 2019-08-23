@@ -1,10 +1,13 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const methodOveride = require('method-override')
 const app = express()
 const exphbs = require('express-handlebars')
 const productsRoutes = require('./routes/products')
 
 const PORT = 8080;
+
+app.use(methodOveride('_method'))
 
 app.engine('.hbs', exphbs({
     extname: '.hbs',

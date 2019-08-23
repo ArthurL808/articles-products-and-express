@@ -12,7 +12,7 @@ let products = [
     id: 1
   },
   {
-    name: "yellow",
+    name: "green",
     price: 10,
     inventory: 200,
     id: 2
@@ -28,8 +28,20 @@ let addProduct = function(name, price, inventory) {
   product.name = name;
   product.price = parseInt(price);
   product.inventory = parseInt(inventory);
-  product.id = products.length + 1;
+  product.id = products.length;
   products.push(product);
+  let arr = products.map(function (e) {
+    return e.id
+  })
+  let isDuplicate = arr.some(function (e,idx) {
+    return arr.indexOf(e) != idx
+  })
+  if(isDuplicate === true){
+    product.id += 1
+  }
+  console.log(arr)
+  console.log(product.id)
+  console.log(isDuplicate)
 };
 let editProduct = function(id, data) {
   let edit = getProduct(id);
