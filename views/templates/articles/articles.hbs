@@ -1,0 +1,11 @@
+<h2>{{title}}</h2>
+<h3>By: {{author}}</h3>
+<p>{{body}}</p> <br>
+<h3>{{error}}</h3>
+<form action="/articles/{{urlTitle}}?_method=DELETE" method="POST">
+    <input type="submit" name="_method" value="Delete">
+</form>
+
+<form action="/articles/{{urlTitle}}/edit" method="GET">
+    <input type="submit" value="Edit">
+</form>

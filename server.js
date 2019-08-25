@@ -4,6 +4,7 @@ const methodOveride = require('method-override')
 const app = express()
 const exphbs = require('express-handlebars')
 const productsRoutes = require('./routes/products')
+const articlesRoutes = require('./routes/articles')
 
 const PORT = 8080;
 
@@ -22,7 +23,7 @@ app.get('/', (req,res) => {
 
 res.send('no index made yet')
 })
-
+app.use('/articles',articlesRoutes)
 app.use('/products', productsRoutes)
 
 app.listen(PORT, console.log(`server is listening on PORT ${PORT}`))

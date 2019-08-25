@@ -1,0 +1,10 @@
+<form action="/articles/{{urlTitle}}?_method=PUT" method="POST">
+    Title: <br>
+    <input type="text" name="title" value="{{title}}"><br>
+    Author: <br>
+    <input type="text" name="author" value="{{author}}"> <br>
+    Body: <br>
+    <input type="text" name="body" value="{{body}}"> <br> <br>
+    <input type="submit" value="Submit">
+</form>
+<h2>{{error}}</h2>

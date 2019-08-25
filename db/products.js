@@ -1,21 +1,22 @@
+let counter = 4;
 let products = [
   {
     name: "red",
     price: 23,
     inventory: 100,
-    id: 0
+    id: 1
   },
   {
     name: "blue",
     price: 20,
     inventory: 120,
-    id: 1
+    id: 2
   },
   {
     name: "green",
     price: 10,
     inventory: 200,
-    id: 2
+    id: 3
   }
 ];
 
@@ -28,20 +29,9 @@ let addProduct = function(name, price, inventory) {
   product.name = name;
   product.price = parseInt(price);
   product.inventory = parseInt(inventory);
-  product.id = products.length;
+  product.id = counter;
   products.push(product);
-  let arr = products.map(function (e) {
-    return e.id
-  })
-  let isDuplicate = arr.some(function (e,idx) {
-    return arr.indexOf(e) != idx
-  })
-  if(isDuplicate === true){
-    product.id += 1
-  }
-  console.log(arr)
-  console.log(product.id)
-  console.log(isDuplicate)
+  counter++;
 };
 let editProduct = function(id, data) {
   let edit = getProduct(id);
@@ -60,7 +50,7 @@ let deleteProduct = function(id) {
   products = products.filter(current => {
     return current.id !== parseInt(id.id);
   });
-  return getAll()
+  return getAll();
 };
 module.exports = {
   getAll,

@@ -2,6 +2,9 @@ const express = require("express");
 const router = express.Router();
 const dataBase = require('../db/products')
 
+const errors = {error:''
+}
+
 router.get(`/`, (req, res) => {
   let all = dataBase.getAll()
   let allProducts = {all: all}
@@ -13,40 +16,58 @@ router.get(`/`, (req, res) => {
 });
 
 router.get(`/new`, (req,res) =>{
-  res.render('./templates/products/new')
+  res.render('./templates/products/new',errors)
 })
 router.get(`/:id/edit`,(req,res)=>{
   let product = dataBase.getProduct(req.params.id)
+  if(errors.error){
+    product.error = errors.error
+  }else{
+    product.error = ''
+  }
   res.render(`./templates/products/edit`,product)
 })
 
 router.get(`/:id`,(req,res)=>{
   let product = dataBase.getProduct(req.params.id)
+  if(!product){
+    product = errors
+  }else{
+    product.error = ''
+  }
   res.render('./templates/products/products',product)
 })
 
 router.post(`/`, (req, res) => {
   if(req.body.name === '' || req.body.price === '' || req.body.inventory === ''){
-    return res.render('./templates/products/new',{message:'Please fill out all fields'})
+    errors.error = 'Please fill out all fields with the correct information Name = string , Price & Inventory = Numbers'
+    return res.redirect('/products/new')
   }else if(!isNaN(req.body.name) || isNaN(req.body.price) || isNaN(req.body.inventory)){
-    return res.render('./templates/products/new',{message:'Please fill out all fields with the correct information Name = string , Price & Inventory = Numbers'})
+    errors.error = "Please fill out all fields with the correct information Name = string , Price & Inventory = Numbers"
+    return res.redirect('/products/new')
   }
+  errors.error = ''
   dataBase.addProduct(req.body.name,req.body.price,req.body.inventory)
   res.redirect('/products');
 }); 
 router.put(`/:id`, (req,res)=> {
-  let getProduct = dataBase.getProduct(req.params.id)
   if(req.body.name === '' || req.body.price === '' || req.body.inventory === ''){
-    getProduct.message = 'Please fill out all fields'
-    return res.render(`./templates/products/edit`,getProduct)
+    errors.error = "Please fill out all fields with the correct information Name = string , Price & Inventory = Numbers"
+    return res.redirect(`/products/${req.params.id}/edit`)
   }else if(!isNaN(req.body.name) || isNaN(req.body.price) || isNaN(req.body.inventory)){
-    getProduct.message = 'Please fill out all fields with the correct information Name = string , Price & Inventory = Numbers'
-    return res.render(`./templates/products/edit`,getProduct)
+    errors.error = "Please fill out all fields with the correct information Name = string , Price & Inventory = Numbers"
+    return res.redirect(`/products/${req.params.id}/edit`)
   }
+  errors.error = ''
   dataBase.editProduct(req.params.id,req.body)
-  res.redirect('/products')
+  res.redirect(`/products/${req.params.id}`)
 })
 router.delete('/:id', (req,res) => {
+  if(isNaN(req.params.id)){
+    errors.error = `That product Doesn't exist`
+    return res.redirect(`/products/${req.params.id}`)
+  }
+  errors.error = ''
   dataBase.deleteProduct(req.params)
 res.redirect('/products')
 })
