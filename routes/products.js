@@ -11,7 +11,6 @@ router.get(`/`, (req, res) => {
   if(all.length < 1){
     allProducts.message = 'No products avalible'
   }
-  res.status(200)
   res.render('./templates/products/index',allProducts);  
 });
 
@@ -63,6 +62,7 @@ router.put(`/:id`, (req,res)=> {
   res.redirect(`/products/${req.params.id}`)
 })
 router.delete('/:id', (req,res) => {
+  console.log(req.params.id)
   if(isNaN(req.params.id)){
     errors.error = `That product Doesn't exist`
     return res.redirect(`/products/${req.params.id}`)
