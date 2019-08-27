@@ -32,6 +32,7 @@ router.get(`/:id`,(req,res)=>{
   let article = dataBase.getArticles(req.params.id)
   if(!article){
     article = errors
+    article.error = 'Article does not exist'
   }else{
     article.error = ''
   }
@@ -63,8 +64,11 @@ router.put(`/:id`, (req,res)=> {
   res.redirect(`/articles/${req.params.id}`)
 })
 router.delete('/:id', (req,res) => {
+ let article = dataBase.getArticles(req.params.id)
+  if(!article){
+    return res.redirect(`/articles/${req.params.id}`)
+  }
   if(!isNaN(req.params.id)){
-    errors.error = `That Article doesn't exist`
     return res.redirect(`/articles/${req.params.id}`)
   }
   errors.error = ''

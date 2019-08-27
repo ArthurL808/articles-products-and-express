@@ -31,6 +31,7 @@ router.get(`/:id`,(req,res)=>{
   let product = dataBase.getProduct(req.params.id)
   if(!product){
     product = errors
+    product.error = 'Product does not exisit'
   }else{
     product.error = ''
   }
@@ -62,8 +63,11 @@ router.put(`/:id`, (req,res)=> {
   res.redirect(`/products/${req.params.id}`)
 })
 router.delete('/:id', (req,res) => {
+ let product = dataBase.getProduct(req.params.id)
+  if(!product){
+    return res.redirect(`/products/${req.params.id}`)
+  }
   if(isNaN(req.params.id)){
-    errors.error = `That product Doesn't exist`
     return res.redirect(`/products/${req.params.id}`)
   }
   errors.error = ''
