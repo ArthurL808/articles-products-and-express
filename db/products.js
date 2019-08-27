@@ -1,19 +1,19 @@
 let counter = 4;
 let products = [
   {
-    name: "red",
+    name: "Red",
     price: 23,
     inventory: 100,
     id: 1
   },
   {
-    name: "blue",
+    name: "Blue",
     price: 20,
     inventory: 120,
     id: 2
   },
   {
-    name: "green",
+    name: "Green",
     price: 10,
     inventory: 200,
     id: 3
