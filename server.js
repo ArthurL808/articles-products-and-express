@@ -16,8 +16,9 @@ app.engine('.hbs', exphbs({
 }))
 app.set('views',__dirname + '/views')
 app.set('view engine', '.hbs')
-
+// app.set('styles',__filename + 'styles')
 app.use(bodyParser.urlencoded({extended: false}))
+// app.use(express.static(__filename + 'stlyes'))
 
 app.get('/', (req,res) => {
 
@@ -27,4 +28,3 @@ app.use('/articles',articlesRoutes)
 app.use('/products', productsRoutes)
 
 app.listen(PORT, console.log(`server is listening on PORT ${PORT}`))
-// app.use(express.static('db'))
