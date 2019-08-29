@@ -1,10 +1,13 @@
+<div class="wrapper">
+    <h1 class="welcome">Edit Product</h1>
 <form action="/products/{{id}}?_method=PUT" method="POST">
-    Name: <br>
-    <input type="text" name="name" value="{{name}}"><br>
-    Price: <br>
-    <input type="text" name="price" value="{{price}}"> <br>
-    Inventory: <br>
+  <h2>  Name:</h2>
+    <input type="text" name="name" value="{{name}}">
+    <h2>Price:</h2>
+    <input type="text" name="price" value="{{price}}"> 
+    <h2>Inventory:</h2>
     <input type="text" name="inventory" value="{{inventory}}"> <br> <br>
-    <input type="submit" value="Submit">
+    <input class="btn" type="submit" value="Submit">
 </form>
 <h2>{{error}}</h2>
+</div>

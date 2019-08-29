@@ -1,11 +1,11 @@
-<div class="indexWrapper">
+<div class="wrapper">
 <h1>Products</h1>
-<h2>{{message}}</h2>
+<h2 id="message">{{message}}</h2>
 {{#each all}}
-<h2><a href="/products/{{id}}">{{name}}</a></h2>
+<h2><a class="name" href="/products/{{id}}">{{name}}</a></h2>
 <h3>${{price}}</h3>
-<p>{{inventory}} {{name}} are in stock</p>
+<p>{{inventory}} {{name}}'s are in stock</p>
 </br>
 {{/each}}
-<a href="/products/new">Add New Product</a>
+<h2><a href="/products/new">Add New Product</a></h2>
 </div>

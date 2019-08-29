@@ -1,12 +1,16 @@
-<h2>{{name}}</h2>
+<div class="wrapper">
+    <h1>Products</h1>
+<h2 class="name">{{name}}</h2>
 <h3>${{price}}</h3>
-<p>{{inventory}} are in stock</p> <br>
-<h2>{{error}}</h2>
-
+<p>{{inventory}} {{name}}'s are in stock</p> <br>
+<h2 id="message">{{error}}</h2>
+<div class="container">
 <form action="/products/{{id}}?_method=DELETE" method="POST">
-    <input type="submit" name="_method" value="Delete">
+    <input class="btn" type="submit" name="_method" value="Delete">
 </form>
 
 <form action="/products/{{id}}/edit" method="GET">
-    <input type="submit" value="Edit">
+    <input class='btn' type="submit" value="Edit">
 </form>
+</div>
+</div>

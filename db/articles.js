@@ -1,15 +1,15 @@
 let articles = [
   {
-    title: "stuff",
-    body: 'big stuffs',
-    author: 'that guy',
-    urlTitle: 'stuff'
+    title: "Stuff",
+    body: 'Big stuffs',
+    author: 'That guy',
+    urlTitle: 'Stuff'
   },
   {
-    title: "blue fire",
-    body: 'daft punk is cool',
-    author: 'daft kids',
-    urlTitle: 'blue-fire'
+    title: "Robot fire",
+    body: 'Daft punk is cool',
+    author: 'Daft kids',
+    urlTitle: 'Robot-fire'
   }
 ];
 

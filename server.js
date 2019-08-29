@@ -16,13 +16,12 @@ app.engine('.hbs', exphbs({
 }))
 app.set('views',__dirname + '/views')
 app.set('view engine', '.hbs')
-// app.set('styles',__filename + 'styles')
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(express.static(path.join(__dirname,  '/public')))
 
 app.get('/', (req,res) => {
 
-res.send('no index made yet')
+res.render('./frontpage')
 })
 app.use('/articles',articlesRoutes)
 app.use('/products', productsRoutes)
