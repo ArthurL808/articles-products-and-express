@@ -1,18 +1,17 @@
 const express = require("express");
 const router = express.Router();
-const dataBase = require('../db/articles')
 
 const errors = {error:''
 }
 
 router.get(`/`, (req, res) => {
-  let all = dataBase.getAll()
-  let allArticles = {all: all}
-  if(all.length < 1){
-    allArticles.message = 'No Articles avalible'
-  }
-  res.status(200)
-  res.render('./templates/articles/index',allArticles);  
+  return req.db.Article.fetchAll().then(results =>{
+    let all = results.toJSON()
+    if(all.length < 1){
+      all.message = 'No Articles avalible'
+    }
+    res.render('./templates/articles/index',{all:all});
+  })
 });
 
 router.get(`/new`, (req,res) =>{
